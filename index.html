@@ -78,7 +78,7 @@
   let tousEmails = [];
 
   function categoriser(texte) {
-    const t = texte.toLowerCase();
+    const t = (texte || '').toLowerCase();
     if (t.includes('sinistre') || t.includes('claim') || t.includes('accident') || t.includes('incident')) return 'sinistre';
     if (t.includes('urgent') || t.includes('critique') || t.includes('immédiat') || t.includes('priorité')) return 'critique';
     if (t.includes('contrat') || t.includes('assurance') || t.includes('couverture') || t.includes('police')) return 'assurance';
@@ -91,13 +91,29 @@
     try {
       const r = await fetch('https://raw.githubusercontent.com/MODIBO-web/email-dashboard/main/emails.json?t=' + Date.now());
       const data = await r.json();
-      const contenu = atob(data.content.replace(/\n/g, ''));
-      const email = JSON.parse(contenu);
+
+      const contenuBrut = atob(data.content.replace(/\n/g, ''));
+      const contenuPropre = contenuBrut
+        .replace(/[\r\n\t]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      let email;
+      try {
+        email = JSON.parse(contenuPropre);
+      } catch(e) {
+        const sujet = (contenuPropre.match(/"sujet":"([^"]*)"/) || [])[1] || 'Sans sujet';
+        const de = (contenuPropre.match(/"de":"([^"]*)"/) || [])[1] || 'Inconnu';
+        const resume = contenuPropre.replace(/.*"resume":"/, '').replace(/"\}.*/, '');
+        email = { sujet, de, resume };
+      }
+
       email.categorie = categoriser((email.sujet || '') + ' ' + (email.resume || ''));
       tousEmails = [email];
       document.getElementById('last-update').textContent = '🕐 Dernier email : ' + (email.sujet || '');
       mettreAJourStats();
       afficherEmails(tousEmails);
+
     } catch(e) {
       document.getElementById('email-list').innerHTML = '<div class="loading-box">❌ Erreur : ' + e.message + '</div>';
     }
