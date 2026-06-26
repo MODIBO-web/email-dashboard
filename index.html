@@ -16,7 +16,6 @@
       min-height: 100vh;
     }
 
-    /* HEADER */
     .header {
       background: rgba(10, 13, 28, 0.95);
       backdrop-filter: blur(20px);
@@ -30,118 +29,44 @@
       z-index: 100;
     }
     .logo { display: flex; align-items: center; gap: 12px; }
-    .logo-icon {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
-    }
+    .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
     .logo-text h1 { font-size: 16px; font-weight: 700; color: #f1f5f9; }
     .logo-text p { font-size: 11px; color: #475569; margin-top: 1px; }
     .header-right { display: flex; align-items: center; gap: 16px; }
-    .live-badge {
-      display: flex; align-items: center; gap: 6px;
-      background: rgba(34,197,94,0.1);
-      border: 1px solid rgba(34,197,94,0.2);
-      padding: 5px 12px; border-radius: 20px;
-    }
+    .live-badge { display: flex; align-items: center; gap: 6px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); padding: 5px 12px; border-radius: 20px; }
     .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
     .live-text { font-size: 11px; color: #22c55e; font-weight: 500; }
     .last-update-header { font-size: 11px; color: #334155; }
 
-    /* STATS */
-    .stats-bar {
-      display: flex; gap: 1px;
-      background: rgba(255,255,255,0.04);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .stat-item {
-      flex: 1; padding: 16px 20px;
-      display: flex; align-items: center; gap: 12px;
-      background: #070914;
-      transition: background 0.2s;
-      cursor: default;
-    }
+    .stats-bar { display: flex; gap: 1px; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .stat-item { flex: 1; padding: 16px 20px; display: flex; align-items: center; gap: 12px; background: #070914; transition: background 0.2s; }
     .stat-item:hover { background: rgba(255,255,255,0.02); }
-    .stat-icon {
-      width: 38px; height: 38px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; flex-shrink: 0;
-    }
-    .stat-info { min-width: 0; }
+    .stat-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
     .stat-num { font-size: 22px; font-weight: 800; line-height: 1; }
     .stat-label { font-size: 10px; color: #475569; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.6px; font-weight: 500; }
 
-    /* TOOLBAR */
-    .toolbar {
-      padding: 14px 32px;
-      display: flex; gap: 10px; align-items: center;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: #070914;
-    }
+    .toolbar { padding: 14px 32px; display: flex; gap: 10px; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); background: #070914; }
     .search-wrap { flex: 1; position: relative; }
     .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #334155; font-size: 14px; pointer-events: none; }
-    .search-box {
-      width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: 10px 16px 10px 40px;
-      color: #e2e8f0; font-size: 13px; outline: none;
-      font-family: inherit;
-      transition: all 0.2s;
-    }
+    .search-box { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 10px 16px 10px 40px; color: #e2e8f0; font-size: 13px; outline: none; font-family: inherit; transition: all 0.2s; }
     .search-box::placeholder { color: #334155; }
     .search-box:focus { border-color: rgba(59,130,246,0.5); background: rgba(59,130,246,0.05); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
 
-    /* FILTERS */
-    .filters {
-      padding: 12px 32px;
-      display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: #070914;
-    }
+    .filters { padding: 12px 32px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.05); background: #070914; }
     .filter-label { font-size: 10px; color: #334155; text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600; margin-right: 6px; }
-    .filter-btn {
-      padding: 6px 14px; border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: transparent; color: #475569;
-      cursor: pointer; font-size: 12px; font-weight: 500;
-      transition: all 0.15s; font-family: inherit;
-      display: flex; align-items: center; gap: 5px;
-    }
+    .filter-btn { padding: 6px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); background: transparent; color: #475569; cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.15s; font-family: inherit; display: flex; align-items: center; gap: 5px; }
     .filter-btn:hover { background: rgba(255,255,255,0.05); color: #94a3b8; border-color: rgba(255,255,255,0.12); }
     .filter-btn.active { background: #1e40af; color: #bfdbfe; border-color: #3b82f6; }
 
-    /* ACTION BAR */
-    .action-bar {
-      padding: 8px 32px;
-      display: flex; justify-content: space-between; align-items: center;
-      background: #070914;
-    }
+    .action-bar { padding: 8px 32px; display: flex; justify-content: space-between; align-items: center; background: #070914; }
     .result-count { font-size: 11px; color: #334155; font-weight: 500; }
-    .close-all-btn {
-      background: transparent; border: 1px solid rgba(255,255,255,0.08);
-      color: #475569; padding: 5px 12px; border-radius: 7px;
-      cursor: pointer; font-size: 11px; font-weight: 500;
-      transition: all 0.15s; font-family: inherit;
-    }
+    .close-all-btn { background: transparent; border: 1px solid rgba(255,255,255,0.08); color: #475569; padding: 5px 12px; border-radius: 7px; cursor: pointer; font-size: 11px; font-weight: 500; transition: all 0.15s; font-family: inherit; }
     .close-all-btn:hover { border-color: rgba(239,68,68,0.4); color: #ef4444; background: rgba(239,68,68,0.05); }
 
-    /* EMAIL LIST */
     .email-list { padding: 12px 32px 80px; display: flex; flex-direction: column; gap: 6px; }
 
-    /* EMAIL CARD */
-    .email-card {
-      background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-left: 3px solid rgba(255,255,255,0.1);
-      transition: all 0.2s;
-      overflow: hidden;
-    }
+    .email-card { background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(255,255,255,0.1); transition: all 0.2s; overflow: hidden; }
     .email-card:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
     .email-card.open { border-color: rgba(59,130,246,0.3); background: rgba(59,130,246,0.03); }
     .email-card.critique { border-left-color: #ef4444; }
@@ -150,19 +75,11 @@
     .email-card.reunion { border-left-color: #22c55e; }
     .email-card.information { border-left-color: #3b82f6; }
 
-    .card-header {
-      padding: 14px 18px; cursor: pointer;
-      display: flex; align-items: center; gap: 14px;
-    }
+    .card-header { padding: 14px 18px; cursor: pointer; display: flex; align-items: center; gap: 14px; }
     .card-main { flex: 1; min-width: 0; }
     .card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
 
-    .cat-badge {
-      padding: 2px 8px; border-radius: 5px;
-      font-size: 10px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.4px;
-      white-space: nowrap; flex-shrink: 0;
-    }
+    .cat-badge { padding: 2px 8px; border-radius: 5px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; flex-shrink: 0; }
     .badge-critique { background: rgba(239,68,68,0.15); color: #f87171; }
     .badge-assurance { background: rgba(249,115,22,0.15); color: #fb923c; }
     .badge-sinistre { background: rgba(245,158,11,0.15); color: #fbbf24; }
@@ -170,82 +87,36 @@
     .badge-information { background: rgba(59,130,246,0.15); color: #60a5fa; }
     .badge-autre { background: rgba(148,163,184,0.1); color: #64748b; }
 
-    .email-subject {
-      font-size: 13px; font-weight: 600; color: #e2e8f0;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
+    .email-subject { font-size: 13px; font-weight: 600; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .email-meta { display: flex; gap: 14px; align-items: center; }
     .email-from { font-size: 12px; color: #475569; }
     .email-date { font-size: 11px; color: #334155; }
 
-    .toggle-btn {
-      width: 26px; height: 26px; border-radius: 7px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: transparent; color: #475569;
-      cursor: pointer; font-size: 11px; flex-shrink: 0;
-      transition: all 0.15s; display: flex; align-items: center; justify-content: center;
-      font-family: inherit;
-    }
+    .toggle-btn { width: 26px; height: 26px; border-radius: 7px; border: 1px solid rgba(255,255,255,0.08); background: transparent; color: #475569; cursor: pointer; font-size: 11px; flex-shrink: 0; transition: all 0.15s; display: flex; align-items: center; justify-content: center; font-family: inherit; }
     .toggle-btn:hover { background: rgba(255,255,255,0.06); color: #94a3b8; }
     .email-card.open .toggle-btn { background: rgba(59,130,246,0.2); border-color: rgba(59,130,246,0.4); color: #60a5fa; }
 
-    /* RESUME BOX */
-    .resume-box {
-      display: none;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 16px 18px;
-      background: rgba(0,0,0,0.2);
-    }
+    .resume-box { display: none; border-top: 1px solid rgba(255,255,255,0.05); padding: 16px 18px; background: rgba(0,0,0,0.2); }
     .resume-box.visible { display: block; }
     .resume-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-    .resume-title {
-      font-size: 10px; color: #3b82f6; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.6px;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .close-btn {
-      background: transparent; border: 1px solid rgba(255,255,255,0.08);
-      color: #475569; padding: 3px 10px; border-radius: 6px;
-      cursor: pointer; font-size: 11px; font-weight: 500;
-      transition: all 0.15s; font-family: inherit;
-    }
+    .resume-title { font-size: 10px; color: #3b82f6; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; }
+    .close-btn { background: transparent; border: 1px solid rgba(255,255,255,0.08); color: #475569; padding: 3px 10px; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 500; transition: all 0.15s; font-family: inherit; }
     .close-btn:hover { border-color: rgba(239,68,68,0.3); color: #ef4444; }
     .resume-text { font-size: 13px; color: #94a3b8; line-height: 1.9; white-space: pre-line; }
 
-    /* LOADING */
     .loading-box { text-align: center; padding: 80px 30px; color: #334155; }
-    .spinner {
-      width: 32px; height: 32px;
-      border: 2px solid rgba(255,255,255,0.06);
-      border-top-color: #3b82f6;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      margin: 0 auto 14px;
-    }
+    .spinner { width: 32px; height: 32px; border: 2px solid rgba(255,255,255,0.06); border-top-color: #3b82f6; border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 14px; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .loading-text { font-size: 13px; font-weight: 500; }
 
-    .no-results { text-align: center; padding: 60px; color: #334155; font-size: 13px; }
-
-    /* REFRESH */
-    .refresh-btn {
-      position: fixed; bottom: 24px; right: 24px;
-      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-      color: white; border: none;
-      padding: 11px 20px; border-radius: 10px;
-      cursor: pointer; font-size: 13px; font-weight: 600;
-      box-shadow: 0 4px 24px rgba(59,130,246,0.35);
-      transition: all 0.2s; z-index: 50; font-family: inherit;
-      display: flex; align-items: center; gap: 7px;
-    }
-    .refresh-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(59,130,246,0.45); }
-    .refresh-btn:active { transform: translateY(0); }
-
-    /* EMPTY STATE */
     .empty-state { text-align: center; padding: 80px 30px; }
     .empty-icon { font-size: 40px; margin-bottom: 16px; opacity: 0.3; }
     .empty-title { font-size: 15px; font-weight: 600; color: #334155; margin-bottom: 6px; }
     .empty-sub { font-size: 12px; color: #1e293b; }
+
+    .refresh-btn { position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; border: none; padding: 11px 20px; border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: 600; box-shadow: 0 4px 24px rgba(59,130,246,0.35); transition: all 0.2s; z-index: 50; font-family: inherit; display: flex; align-items: center; gap: 7px; }
+    .refresh-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(59,130,246,0.45); }
+    .refresh-btn:active { transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -337,7 +208,7 @@
 <button class="refresh-btn" onclick="chargerEmails()">↻ Actualiser</button>
 
 <script>
-  const AIRTABLE_TOKEN = 'patBiokWv1c1Sfa5m.e7c7d7c46d27b419e3194bcc88a8a2c348e7af4b1da65a8b7564665e53dc20f2';
+  const AIRTABLE_TOKEN = 'patBoNa41Ccn2r9nY.56ce5795f8e61b04af23a4f20d2ce9dab963beeda7c628a261ba62f470d864e2';
   const AIRTABLE_BASE  = 'appkEbYOcQVX02x3n';
   const AIRTABLE_TABLE = 'tbljELKov1lLJxg0s';
 
@@ -373,7 +244,7 @@
       const url = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}?sort[0][field]=createdTime&sort[0][direction]=desc&maxRecords=400`;
       const r = await fetch(url, { headers: { 'Authorization': `Bearer ${AIRTABLE_TOKEN}` } });
       const data = await r.json();
-      if (!data.records) throw new Error('Réponse invalide d\'Airtable');
+      if (!data.records) throw new Error('Token invalide ou révoqué');
 
       tousEmails = data.records.map(rec => {
         const f = rec.fields;
