@@ -86,30 +86,21 @@
     return 'information';
   }
 
-  function extraireChamp(texte, champ) {
-    const regex = new RegExp('"' + champ + '"\\s*:\\s*"((?:[^"\\\\]|\\\\.)*)"');
-    const match = texte.match(regex);
-    return match ? match[1] : '';
-  }
-
   async function chargerEmails() {
     document.getElementById('email-list').innerHTML = '<div class="loading-box">⏳ Chargement...</div>';
     try {
-      const r = await fetch('https://api.github.com/repos/MODIBO-web/email-dashboard/contents/emails.json', {
-        headers: { 'Accept': 'application/vnd.github.v3+json', 'Cache-Control': 'no-cache' }
-      });
-      const data = await r.json();
-      const contenuBrut = atob(data.content.replace(/\n/g, ''));
+      const r = await fetch('https://raw.githubusercontent.com/MODIBO-web/email-dashboard/main/emails.json?nocache=' + Date.now());
+      const contenuBrut = await r.text();
 
       let email;
       try {
         email = JSON.parse(contenuBrut);
       } catch(e) {
-        email = {
-          sujet: extraireChamp(contenuBrut, 'sujet'),
-          de: extraireChamp(contenuBrut, 'de'),
-          resume: contenuBrut.replace(/.*"resume"\s*:\s*"/, '').replace(/"?\}?\s*$/, '').replace(/\\n/g, ' ').replace(/\\"/g, '"')
-        };
+        const sujet = (contenuBrut.match(/\\"sujet\\":\\"([^\\]+)\\"/) || contenuBrut.match(/"sujet":"([^"]+)"/) || [])[1] || 'Sans sujet';
+        const de = (contenuBrut.match(/\\"de\\":\\"([^\\]+)\\"/) || contenuBrut.match(/"de":"([^"]+)"/) || [])[1] || 'Inconnu';
+        const resumeMatch = contenuBrut.match(/\\"resume\\":\\"([\s\S]+?)\\"\}/) || contenuBrut.match(/"resume":"([\s\S]+?)"\}/);
+        const resume = resumeMatch ? resumeMatch[1].replace(/\\n/g, ' ').replace(/\\"/g, '"') : contenuBrut;
+        email = { sujet, de, resume };
       }
 
       email.categorie = categoriser((email.sujet || '') + ' ' + (email.resume || ''));
