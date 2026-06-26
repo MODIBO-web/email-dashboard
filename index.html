@@ -86,11 +86,32 @@
     return 'information';
   }
 
+  function extraireChamp(texte, champ) {
+    const regex = new RegExp('"' + champ + '"\\s*:\\s*"((?:[^"\\\\]|\\\\.)*)"');
+    const match = texte.match(regex);
+    return match ? match[1] : '';
+  }
+
   async function chargerEmails() {
     document.getElementById('email-list').innerHTML = '<div class="loading-box">⏳ Chargement...</div>';
     try {
-      const r = await fetch('https://raw.githubusercontent.com/MODIBO-web/email-dashboard/main/emails.json?t=' + Date.now());
-      const email = await r.json();
+      const r = await fetch('https://api.github.com/repos/MODIBO-web/email-dashboard/contents/emails.json', {
+        headers: { 'Accept': 'application/vnd.github.v3+json', 'Cache-Control': 'no-cache' }
+      });
+      const data = await r.json();
+      const contenuBrut = atob(data.content.replace(/\n/g, ''));
+
+      let email;
+      try {
+        email = JSON.parse(contenuBrut);
+      } catch(e) {
+        email = {
+          sujet: extraireChamp(contenuBrut, 'sujet'),
+          de: extraireChamp(contenuBrut, 'de'),
+          resume: contenuBrut.replace(/.*"resume"\s*:\s*"/, '').replace(/"?\}?\s*$/, '').replace(/\\n/g, ' ').replace(/\\"/g, '"')
+        };
+      }
+
       email.categorie = categoriser((email.sujet || '') + ' ' + (email.resume || ''));
       tousEmails = [email];
       document.getElementById('last-update').textContent = '🕐 Dernier email : ' + (email.sujet || '');
@@ -137,7 +158,7 @@
   }
 
   chargerEmails();
-  setInterval(chargerEmails, 60000);
+  setInterval(chargerEmails, 30000);
 </script>
 </body>
 </html>
