@@ -40,7 +40,6 @@
     .resume-text { font-size: 13px; color: #ccc; line-height: 1.8; white-space: pre-line; }
     .loading-box { text-align: center; padding: 60px; color: #666; font-size: 16px; }
     .refresh-btn { position: fixed; bottom: 30px; right: 30px; background: #0078d4; color: white; border: none; padding: 12px 20px; border-radius: 30px; cursor: pointer; font-size: 14px; font-weight: 500; }
-    .refresh-btn:hover { background: #006cbd; }
     .last-update { font-size: 11px; color: #666; padding: 0 30px 10px; }
   </style>
 </head>
@@ -83,7 +82,7 @@
     if (t.includes('sinistre') || t.includes('claim') || t.includes('accident') || t.includes('incident')) return 'sinistre';
     if (t.includes('urgent') || t.includes('critique') || t.includes('immédiat') || t.includes('priorité')) return 'critique';
     if (t.includes('contrat') || t.includes('assurance') || t.includes('couverture') || t.includes('police')) return 'assurance';
-    if (t.includes('réunion') || t.includes('meeting') || t.includes('appel') || t.includes('call')) return 'reunion';
+    if (t.includes('réunion') || t.includes('meeting') || t.includes('appel') || t.includes('rendez-vous')) return 'reunion';
     return 'information';
   }
 
@@ -92,14 +91,11 @@
     try {
       const r = await fetch('https://raw.githubusercontent.com/MODIBO-web/email-dashboard/main/emails.json?t=' + Date.now());
       const data = await r.json();
-
       const contenu = atob(data.content.replace(/\n/g, ''));
       const email = JSON.parse(contenu);
-
+      email.categorie = categoriser((email.sujet || '') + ' ' + (email.resume || ''));
       tousEmails = [email];
-      tousEmails[0].categorie = categoriser(email.sujet + ' ' + email.resume);
-
-      document.getElementById('last-update').textContent = '🕐 Dernier email : ' + email.sujet;
+      document.getElementById('last-update').textContent = '🕐 Dernier email : ' + (email.sujet || '');
       mettreAJourStats();
       afficherEmails(tousEmails);
     } catch(e) {
